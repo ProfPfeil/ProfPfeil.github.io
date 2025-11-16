@@ -1,46 +1,52 @@
-
-
-<!DOCTYPE html>
-
-<html lang="en">
-
-	<head>
-		<title>This is the title!</title>
-	</head>
-	
-	<body>
-		<h1>This is my webpage!</h1>
-		
-		<p>This is a paragraph!</p>
-		
-		<img src="./dog.jpg" />
-	</body>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+	const sceneEl = document.querySelector('a-scene');
+	let arSystem;
+	sceneEl.addEventListener('loaded', function () {
+	  arSystem = sceneEl.systems["mindar-image-system"];
+	});
 	
 
+
+	// arReady event triggered when ready
+	sceneEl.addEventListener("arReady", (event) => {
+	  // console.log("MindAR is ready")
+	});
+	// arError event triggered when something went wrong. Mostly browser compatbility issue
+	sceneEl.addEventListener("arError", (event) => {
+	  // console.log("MindAR failed to start")
+	});
+	
+	
+	const pizzarelli = document.querySelector('#pizzarelli');
+	
+	// detect target found
+	pizzarelli.addEventListener("targetFound", event => {
+	  console.log("pizzarelli found");	  
+	  window.open("https://vimeo.com/930391267");
+	});
+	
+	
+	
+      });
+	  
+	  
+    </script>
+  </head>
+  <body>
+    <div style="position: absolute; z-index: 1000">
+    </div>
+    <a-scene mindar-image="imageTargetSrc: ./targets.mind; autoStart: true;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="near: 10; far: 10000; objects: .clickable"></a-camera>
+
+      <a-entity visible="false" id="pizzarelli" mindar-image-target="targetIndex: 0">
+	  </a-entity>
+	  
+    </a-scene>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
-<!--
-
-Common HTML tags
-	h1 - h6
-	p
-	ul
-	ol
-	li
-	img
-	div
-	span
-	i
-	b
-	u
-	a
-
--->
