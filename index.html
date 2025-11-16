@@ -1,52 +1,44 @@
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-	const sceneEl = document.querySelector('a-scene');
-	let arSystem;
-	sceneEl.addEventListener('loaded', function () {
-	  arSystem = sceneEl.systems["mindar-image-system"];
-	});
-	
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	  <title>JazzAR 1.0</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="./libs/mindar/mindar-image-three.prod.js"></script>
+      <script src="./main.js" type="module"></script>
+	  <script src="https://player.vimeo.com/api/player.js"></script>
+  
+      <style>
+        html, body {position: relative; margin: 0; width: 100%; height: 100%; overflow: hidden}
+        #pizzarelli {
+			visibility: hidden;
+        }
+        
+      </style>
+  
+    </head>
+    <body>
 
+      <div id="pizzarelli">
+        <iframe id="pizzarelliFrame" src="https://player.vimeo.com/video/930391267?title=0&amp;byline=0&amp;portrait=0&amp;speed=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Bucky_Pizzarelli"></iframe> 
+		<button id="pizzarelliPause" onclick="playPause(pizPlayer)" style="background-color: transparent; border: none; position: absolute; left: 0px; top: 0px; width: 1920px; height: 1020px;"></button>
+		<script>
+			var pizzarelliFrame = document.querySelector('#pizzarelliFrame');
+			var pizPlayer = new Vimeo.Player(pizzarelliFrame);
+		</script>
+      </div>
+	  
+	  <script>
+		function playPause(player) {
+		
+		player.getPaused().then(function(isPaused){
+			if(isPaused)
+				player.play();
+			else
+				player.pause();
+		});
+		
+		}
+	  </script>
 
-	// arReady event triggered when ready
-	sceneEl.addEventListener("arReady", (event) => {
-	  // console.log("MindAR is ready")
-	});
-	// arError event triggered when something went wrong. Mostly browser compatbility issue
-	sceneEl.addEventListener("arError", (event) => {
-	  // console.log("MindAR failed to start")
-	});
-	
-	
-	const pizzarelli = document.querySelector('#pizzarelli');
-	
-	// detect target found
-	pizzarelli.addEventListener("targetFound", event => {
-	  console.log("pizzarelli found");	  
-	  window.open("https://vimeo.com/930391267");
-	});
-	
-	
-	
-      });
-	  
-	  
-    </script>
-  </head>
-  <body>
-    <div style="position: absolute; z-index: 1000">
-    </div>
-    <a-scene mindar-image="imageTargetSrc: ./targets.mind; autoStart: true;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="near: 10; far: 10000; objects: .clickable"></a-camera>
-
-      <a-entity visible="false" id="pizzarelli" mindar-image-target="targetIndex: 0">
-	  </a-entity>
-	  
-    </a-scene>
-  </body>
-</html>
+    </body>
+  </html>
