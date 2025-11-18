@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const {renderer, cssRenderer, scene, cssScene, camera} = mindarThree;
 
     
-
+/*
     
     const qr1Obj = new CSS3DObject(document.querySelector("#qr1"));
     const qr1Css = mindarThree.addCSSAnchor(2);
@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("QR2 found");
 	});
 
+    */
     await mindarThree.start();
     renderer.setAnimationLoop(() => {
       cssRenderer.render(cssScene, camera);
