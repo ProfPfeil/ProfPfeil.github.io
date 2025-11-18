@@ -8,13 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
       imageTargetSrc: './targets.mind',
     });	
 
+    const {renderer, cssRenderer, scene, cssScene, camera} = mindarThree;
+
     await mindarThree.start();
     renderer.setAnimationLoop(() => {
       cssRenderer.render(cssScene, camera);
     });
+
+    
     }
 	
-	const {renderer, cssRenderer, scene, cssScene, camera} = mindarThree;
+	
 
     const qr1Obj = new CSS3DObject(document.querySelector("#qr1"));
     const qr1Css = mindarThree.addCSSAnchor(0);
