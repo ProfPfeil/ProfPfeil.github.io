@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     const qr2Obj = new CSS3DObject(document.querySelector("#qr2"));
-    const qr2Css = mindarThree.addCSSAnchor(0);
+    const qr2Css = mindarThree.addCSSAnchor(2);
     qr2Css.group.add(qr2Obj);
     
     const qr1Obj = new CSS3DObject(document.querySelector("#qr1"));
