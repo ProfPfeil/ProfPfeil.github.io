@@ -7,6 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
       container: document.body,
       imageTargetSrc: './targets.mind',
     });	
+
+    await mindarThree.start();
+    renderer.setAnimationLoop(() => {
+      cssRenderer.render(cssScene, camera);
+    });
+    }
 	
 	const {renderer, cssRenderer, scene, cssScene, camera} = mindarThree;
 
@@ -18,11 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const qr2Css = mindarThree.addCSSAnchor(1);
     qr2Css.group.add(qr2Obj);
 
-    await mindarThree.start();
-    renderer.setAnimationLoop(() => {
-      cssRenderer.render(cssScene, camera);
-    });
-  }
+    
+    const qr1Logic = document.querySelector("#qr1");
+	qr1Logic.addEventListener("targetFound", event => {
+		console.log("QR1 found");
+	});
+	
+	const qr2Logic = document.querySelector("#qr2");
+	qr2Logic.addEventListener("targetFound", event => {
+		console.log("QR2 found");
+	});
   
   
   
