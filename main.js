@@ -16,10 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     
-    }
-	
-	
-
     const qr1Obj = new CSS3DObject(document.querySelector("#qr1"));
     const qr1Css = mindarThree.addCSSAnchor(0);
     qr1Css.group.add(qr1Obj);
@@ -38,6 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	qr2Logic.addEventListener("targetFound", event => {
 		console.log("QR2 found");
 	});
+    
+    }
+	
+	
+
   
   
   
