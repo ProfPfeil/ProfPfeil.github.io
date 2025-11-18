@@ -10,10 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const {renderer, cssRenderer, scene, cssScene, camera} = mindarThree;
 
-    await mindarThree.start();
-    renderer.setAnimationLoop(() => {
-      cssRenderer.render(cssScene, camera);
-    });
+    
 
     
     const qr1Obj = new CSS3DObject(document.querySelector("#qr1"));
@@ -34,7 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	qr2Logic.addEventListener("targetFound", event => {
 		console.log("QR2 found");
 	});
-    
+
+    await mindarThree.start();
+    renderer.setAnimationLoop(() => {
+      cssRenderer.render(cssScene, camera);
+    });
+
     }
 	
 	
